@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Rebote en el Mundial™ 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:#1a56c4;color:#fff;min-height:100vh;}
+
+/* HERO */
+.hero{background:#1a56c4;text-align:center;padding:2.5rem 1.5rem 2rem;}
+.hero-logos{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:1.8rem;}
+.dr-logo{width:54px;height:54px;border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:-2px;}
+.fifa-badge{background:#fff;border-radius:8px;padding:4px 8px;display:flex;align-items:center;gap:3px;}
+.fifa-badge span.txt{color:#1a56c4;font-weight:900;font-size:14px;}
+.hero h1{font-size:3rem;font-weight:900;color:#c8f000;line-height:1.1;margin-bottom:.8rem;}
+.hero-sub{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:2rem;}
+
+/* COUNTDOWN */
+.countdown-wrap{margin:0 auto;max-width:620px;}
+.cd-title{font-size:1.4rem;font-weight:900;color:#c8f000;margin-bottom:.8rem;}
+.cd-box{border:2px solid #c8f000;border-radius:10px;padding:1rem 1.5rem;display:inline-flex;align-items:flex-end;gap:6px;background:rgba(0,0,0,0.15);}
+.cd-num{font-size:3rem;font-weight:900;color:#c8f000;line-height:1;min-width:60px;text-align:center;}
+.cd-sep{font-size:2.8rem;font-weight:900;color:#c8f000;line-height:1;margin-bottom:18px;}
+.cd-lbl{font-size:9px;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:.12em;text-align:center;margin-top:3px;}
+.cd-unit{display:flex;flex-direction:column;align-items:center;}
+.cd-bottom{font-size:1.1rem;font-weight:700;color:#fff;margin-top:1rem;}
+
+/* DIVIDER */
+.divider{border:none;border-top:1.5px solid rgba(255,255,255,0.3);margin:2rem 0;}
+
+/* SECTION TITLES */
+.sec-title{text-align:center;font-size:2rem;font-weight:900;color:#c8f000;margin-bottom:2rem;}
+
+/* NAV TABS */
+.tabs{display:flex;justify-content:center;gap:10px;margin-bottom:2rem;flex-wrap:wrap;padding:0 1rem;}
+.tab-btn{background:#c8f000;border:none;border-radius:25px;padding:9px 26px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:800;color:#1a56c4;cursor:pointer;transition:all .15s;}
+.tab-btn:hover,.tab-btn.active{background:#fff;color:#1a56c4;}
+.section{display:none;}.section.active{display:block;}
+
+/* GROUPS */
+.groups-outer{padding:0 1rem 2rem;}
+.groups-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem 2rem;margin-bottom:1.5rem;}
+@media(max-width:700px){.groups-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.groups-row{grid-template-columns:1fr;}}
+.group-col{text-align:center;}
+.group-col h3{font-size:1.1rem;font-weight:900;color:#fff;margin-bottom:.8rem;}
+.team-pill{display:flex;align-items:center;gap:8px;background:#c8f000;border-radius:25px;padding:7px 12px 7px 8px;margin-bottom:8px;}
+.team-flag{font-size:20px;line-height:1;}
+.team-name{font-size:.9rem;font-weight:800;color:#1a56c4;flex:1;text-align:left;}
+.team-pts{background:#1a56c4;color:#c8f000;font-size:10px;font-weight:800;border-radius:12px;padding:2px 7px;white-space:nowrap;}
+
+/* CALENDAR */
+.cal-outer{padding:0 1rem 2rem;overflow-x:auto;}
+.cal-table{width:100%;border-collapse:collapse;min-width:560px;}
+.cal-table th{background:rgba(0,0,0,0.2);color:#c8f000;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;padding:8px 6px;border:1.5px solid #c8f000;text-align:center;}
+.cal-table td{border:1.5px solid #c8f000;padding:6px 8px;vertical-align:middle;text-align:center;font-size:13px;font-weight:700;}
+.cal-table td.time{color:#c8f000;font-weight:900;font-size:.95rem;white-space:nowrap;background:rgba(0,0,0,0.15);}
+.cal-table td.empty{background:rgba(255,255,255,0.03);}
+.match-cell{display:flex;align-items:center;justify-content:center;gap:4px;background:#c8f000;border-radius:6px;padding:4px 6px;}
+.match-cell span.mf{font-size:18px;}
+.match-grp{font-size:9px;color:#1a56c4;font-weight:800;display:block;line-height:1;}
+.match-cell-wrap{display:flex;flex-direction:column;align-items:center;gap:2px;}
+
+/* NEWS */
+.news-outer{padding:0 1rem 2rem;}
+.news-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:600px){.news-grid{grid-template-columns:1fr;}}
+.news-card{background:rgba(255,255,255,0.08);border:1.5px solid rgba(200,240,0,0.4);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s;}
+.news-card:hover{border-color:#c8f000;}
+.news-card.featured{grid-column:1/-1;}
+.news-thumb{height:90px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:rgba(200,240,0,0.12);}
+.news-body{padding:12px 14px;}
+.news-cat{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#c8f000;margin-bottom:5px;}
+.news-title{font-size:14px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:6px;}
+.news-date{font-size:11px;color:rgba(255,255,255,0.5);}
+
+/* FOOTER */
+.footer{background:rgba(0,0,0,0.2);padding:1.5rem;text-align:center;margin-top:1rem;}
+.social-row{display:flex;justify-content:center;gap:14px;margin-bottom:1rem;}
+.soc-btn{width:38px;height:38px;border-radius:50%;background:#c8f000;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;text-decoration:none;}
+.footer-logos{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:.8rem;}
+.footer-legal{font-size:10px;color:rgba(255,255,255,0.5);line-height:1.6;max-width:500px;margin:0 auto;}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-logos">
+    <div class="dr-logo">DR</div>
+    <div class="fifa-badge">
+      <span style="font-size:22px;">🏆</span>
+      <span class="txt">FIFA<br>2026</span>
+    </div>
+  </div>
+  <h1>De Rebote en<br>la Copa del Mundo™</h1>
+  <p class="hero-sub">Encuentra aquí todas las novedades</p>
+
+  <div class="countdown-wrap">
+    <div class="cd-title">Faltan</div>
+    <div class="cd-box">
+      <div class="cd-unit"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Días</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Horas</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Minutos</span></div>
+      <span class="cd-sep">:</span>
+      <div class="cd-unit"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Segundos</span></div>
+    </div>
+    <div class="cd-bottom">para el inicio del Mundial™</div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('grupos',this)">⚽ Grupos</button>
+  <button class="tab-btn" onclick="showTab('calendario',this)">📅 Calendario</button>
+  <button class="tab-btn" onclick="showTab('noticias',this)">📰 Noticias</button>
+</div>
+
+<!-- GRUPOS -->
+<div id="grupos" class="section active">
+  <div class="groups-outer">
+    <div class="sec-title">Descubre los grupos</div>
+    <div class="groups-row" id="groups-top"></div>
+    <hr class="divider">
+    <div class="groups-row" id="groups-bot"></div>
+  </div>
+</div>
+
+<!-- CALENDARIO -->
+<div id="calendario" class="section">
+  <div class="cal-outer">
+    <div class="sec-title">Calendario · Hora España (CEST)</div>
+    <table class="cal-table" id="calTable"></table>
+  </div>
+</div>
+
+<!-- NOTICIAS -->
+<div id="noticias" class="section">
+  <div class="news-outer">
+    <div class="sec-title">Últimas noticias</div>
+    <div class="news-grid" id="newsGrid"></div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FOOTER -->
+<div class="footer">
+  <div style="font-weight:800;font-size:.95rem;margin-bottom:.8rem;">Síguenos en nuestras redes</div>
+  <div class="social-row">
+    <a class="soc-btn" href="#" title="Instagram">📸</a>
+    <a class="soc-btn" href="#" title="TikTok">🎵</a>
+    <a class="soc-btn" href="#" title="YouTube">▶️</a>
+  </div>
+  <div class="footer-logos">
+    <div class="dr-logo" style="width:42px;height:42px;font-size:17px;">DR</div>
+    <div class="fifa-badge">
+      <span style="font-size:18px;">🏆</span>
+      <span class="txt" style="font-size:12px;">FIFA<br>2026</span>
+    </div>
+  </div>
+  <p class="footer-legal">De Rebote usa elementos sujetos a propiedad intelectual reclamada por FIFA™.<br>
+  Este medio de comunicación sigue las directices marcadas por sus propietarios relativas a su uso con fines periodísticos e informativos.</p>
+</div>
+
+<script>
+// ── NOTICIAS (editables desde CMS o aquí directamente) ──
+// Para añadir/editar noticias, modifica este array:
+var noticias = [
+  {cat:"Grupos", titulo:"Así quedaron los 12 grupos del Mundial 2026 con los 48 clasificados", fecha:"1 abr 2026", emoji:"🎲"},
+  {cat:"Repechaje", titulo:"Irak y R.D. del Congo obtienen los últimos boletos para el Mundial", fecha:"31 mar 2026", emoji:"⚽"},
+  {cat:"Europa", titulo:"Italia queda fuera: Bosnia, Suecia, Turquía y Rep. Checa cierran el cupo UEFA", fecha:"31 mar 2026", emoji:"🏆"},
+  {cat:"Grupo de la Muerte", titulo:"Francia, Senegal y Noruega en el Grupo I, el más temido del torneo", fecha:"30 mar 2026", emoji:"💀"},
+  {cat:"Historia", titulo:"El Mundial 2026 será el primero con 48 equipos y tres países anfitriones", fecha:"29 mar 2026", emoji:"🌎"},
+  {cat:"Argentina", titulo:"La Albiceleste en el Grupo J con Argelia, Austria y Jordania como defensora del título", fecha:"28 mar 2026", emoji:"🏅"}
+];
+
+// ── COUNTDOWN ──
+var target = new Date('2026-06-11T21:00:00+02:00');
+function tick(){
+  var now = new Date();
+  var diff = Math.max(0, target - now);
+  var d = Math.floor(diff/86400000); diff -= d*86400000;
+  var h = Math.floor(diff/3600000);  diff -= h*3600000;
+  var m = Math.floor(diff/60000);    diff -= m*60000;
+  var s = Math.floor(diff/1000);
+  document.getElementById('cd-d').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+}
+tick(); setInterval(tick,1000);
+
+// ── GRUPOS ──
+var groups = [
+  {id:'A', teams:[{f:'🇲🇽',n:'México'},{f:'🇿🇦',n:'Sudáfrica'},{f:'🇰🇷',n:'Korea'},{f:'🇨🇿',n:'Chequia'}]},
+  {id:'B', teams:[{f:'🇨🇦',n:'Canadá'},{f:'🇧🇦',n:'Bosnia'},{f:'🇶🇦',n:'Catar'},{f:'🇨🇭',n:'Suiza'}]},
+  {id:'C', teams:[{f:'🇧🇷',n:'Brasil'},{f:'🇲🇦',n:'Marruecos'},{f:'🇭🇹',n:'Haití'},{f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',n:'Escocia'}]},
+  {id:'D', teams:[{f:'🇺🇸',n:'EE.UU.'},{f:'🇵🇾',n:'Paraguay'},{f:'🇦🇺',n:'Australia'},{f:'🇹🇷',n:'Turquía'}]},
+  {id:'E', teams:[{f:'🇩🇪',n:'Alemania'},{f:'🇨🇼',n:'Curazao'},{f:'🇨🇮',n:'C. de Marfil'},{f:'🇪🇨',n:'Ecuador'}]},
+  {id:'F', teams:[{f:'🇳🇱',n:'Países Bajos'},{f:'🇯🇵',n:'Japón'},{f:'🇹🇳',n:'Túnez'},{f:'🇸🇪',n:'Suecia'}]},
+  {id:'G', teams:[{f:'🇧🇪',n:'Bélgica'},{f:'🇪🇬',n:'Egipto'},{f:'🇮🇷',n:'Irán'},{f:'🇳🇿',n:'N. Zelanda'}]},
+  {id:'H', teams:[{f:'🇪🇸',n:'España'},{f:'🇨🇻',n:'Cabo Verde'},{f:'🇸🇦',n:'Arabia Saudí'},{f:'🇺🇾',n:'Uruguay'}]},
+  {id:'I', teams:[{f:'🇫🇷',n:'Francia'},{f:'🇸🇳',n:'Senegal'},{f:'🇳🇴',n:'Noruega'},{f:'🇮🇶',n:'Irak'}]},
+  {id:'J', teams:[{f:'🇦🇷',n:'Argentina'},{f:'🇩🇿',n:'Argelia'},{f:'🇦🇹',n:'Austria'},{f:'🇯🇴',n:'Jordania'}]},
+  {id:'K', teams:[{f:'🇵🇹',n:'Portugal'},{f:'🇺🇿',n:'Uzbekistán'},{f:'🇨🇴',n:'Colombia'},{f:'🇨🇩',n:'R.D.Congo'}]},
+  {id:'L', teams:[{f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',n:'Inglaterra'},{f:'🇭🇷',n:'Croacia'},{f:'🇬🇭',n:'Ghana'},{f:'🇵🇦',n:'Panamá'}]}
+];
+
+function renderGroups(){
+  ['groups-top','groups-bot'].forEach(function(id, half){
+    var el = document.getElementById(id);
+    var slice = groups.slice(half*6, (half+1)*6);
+    el.innerHTML = slice.map(function(g){
+      return '<div class="group-col"><h3>Grupo '+g.id+'</h3>'+
+        g.teams.map(function(t){
+          return '<div class="team-pill"><span class="team-flag">'+t.f+'</span><span class="team-name">'+t.n+'</span><span class="team-pts">0 pts</span></div>';
+        }).join('')+'</div>';
+    }).join('');
+  });
+}
+
+// ── CALENDARIO ──
+var days = ['Jue 11/6','Vie 12/6','Sáb 13/6','Dom 14/6','Lun 15/6','Mar 16/6','Mié 17/6'];
+var schedule = {
+  '19:00':[{d:0,f1:'🇲🇽',f2:'🇨🇿',g:'A'}],
+  '20:00':[{d:1,f1:'🇧🇷',f2:'🇲🇦',g:'C'},{d:2,f1:'🇩🇪',f2:'🇨🇼',g:'E'},{d:3,f1:'🇳🇱',f2:'🇹🇳',g:'F'},{d:4,f1:'🇦🇷',f2:'🇩🇿',g:'J'},{d:5,f1:'🇧🇪',f2:'🇳🇿',g:'G'},{d:6,f1:'🇫🇷',f2:'🇸🇳',g:'I'}],
+  '21:00':[{d:1,f1:'🇿🇦',f2:'🇰🇷',g:'A'},{d:2,f1:'🇨🇦',f2:'🇧🇦',g:'B'},{d:4,f1:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',f2:'🇵🇦',g:'L'},{d:5,f1:'🇪🇸',f2:'🇨🇻',g:'H'},{d:6,f1:'🇵🇹',f2:'🇺🇿',g:'K'}],
+  '23:00':[{d:1,f1:'🇺🇸',f2:'🇵🇾',g:'D'},{d:2,f1:'🇶🇦',f2:'🇨🇭',g:'B'},{d:3,f1:'🇧🇪',f2:'🇪🇬',g:'G'},{d:4,f1:'🇮🇷',f2:'🇳🇿',g:'G'},{d:5,f1:'🇸🇦',f2:'🇺🇾',g:'H'},{d:6,f1:'🇨🇴',f2:'🇨🇩',g:'K'}],
+  '02:00':[{d:1,f1:'🇯🇵',f2:'🇸🇪',g:'F'},{d:2,f1:'🇹🇷',f2:'🇦🇺',g:'D'},{d:3,f1:'🇨🇮',f2:'🇪🇨',g:'E'},{d:4,f1:'🇸🇳',f2:'🇳🇴',g:'I'},{d:5,f1:'🇭🇷',f2:'🇬🇭',g:'L'}],
+  '04:00':[{d:2,f1:'🇲🇦',f2:'🇭🇹',g:'C'},{d:3,f1:'🇵🇾',f2:'🇦🇺',g:'D'},{d:4,f1:'🇮🇶',f2:'🇳🇴',g:'I'},{d:5,f1:'🇩🇿',f2:'🇦🇹',g:'J'}],
+  '06:00':[{d:2,f1:'🇧🇷',f2:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',g:'C'},{d:3,f1:'🇺🇿',f2:'🇨🇴',g:'K'},{d:4,f1:'🇯🇴',f2:'🇦🇷',g:'J'},{d:5,f1:'🇵🇹',f2:'🇨🇩',g:'K'}]
+};
+var times = ['19:00','20:00','21:00','23:00','02:00','04:00','06:00'];
+
+function renderCal(){
+  var t = document.getElementById('calTable');
+  var h = '<tr><th>Hora</th>'+days.map(function(d){return '<th>'+d+'</th>';}).join('')+'</tr>';
+  times.forEach(function(time){
+    h += '<tr><td class="time">'+time+'</td>';
+    for(var di=0; di<7; di++){
+      var matches = (schedule[time]||[]).filter(function(x){return x.d===di;});
+      if(matches.length){
+        h += '<td>'+matches.map(function(m){
+          return '<div class="match-cell-wrap"><div class="match-cell"><span class="mf">'+m.f1+'</span><span class="mf">'+m.f2+'</span></div><span class="match-grp">Grp '+m.g+'</span></div>';
+        }).join('')+'</td>';
+      } else {
+        h += '<td class="empty"></td>';
+      }
+    }
+    h += '</tr>';
+  });
+  t.innerHTML = h;
+}
+
+function renderNews(){
+  document.getElementById('newsGrid').innerHTML = noticias.map(function(n,i){
+    return '<div class="news-card'+(i===0?' featured':'')+'">'+
+      '<div class="news-thumb">'+n.emoji+'</div>'+
+      '<div class="news-body">'+
+        '<div class="news-cat">'+n.cat+'</div>'+
+        '<div class="news-title">'+n.titulo+'</div>'+
+        '<div class="news-date">'+n.fecha+'</div>'+
+      '</div></div>';
+  }).join('');
+}
+
+function showTab(tab, btn){
+  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active');});
+  document.getElementById(tab).classList.add('active');
+  btn.classList.add('active');
+}
+
+renderGroups();
+renderCal();
+renderNews();
+</script>
+</body>
+</html>
