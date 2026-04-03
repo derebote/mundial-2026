@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: TU-USUARIO/mundial-2026
+  repo: derebote/mundial-2026
   branch: main
 
 media_folder: "images/uploads"
